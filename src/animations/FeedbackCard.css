@@ -1,0 +1,8 @@
+.feedback-card { padding: 1.25rem; display: grid; gap: 0.9rem; }
+.feedback-card textarea { width: 100%; min-height: 7rem; resize: vertical; background: var(--secondary); border: 2px solid var(--primary); border-radius: 8px; padding: 0.7rem; transition: box-shadow 0.3s; }
+.feedback-card textarea:focus { outline: none; box-shadow: 4px 4px 0 var(--primary); }
+.feedback-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+.feedback-row button { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; min-width: var(--target); min-height: var(--target); padding: 0.5rem 0.8rem; border-radius: 8px; background: var(--secondary); border: 2px solid var(--primary); transition: background-color 0.25s, color 0.25s; }
+.feedback-row button:hover:not(:disabled), .feedback-row button.on { background: var(--primary); color: var(--secondary); }
+.feedback-send { margin-left: auto; font-size: 0.9rem; font-weight: 700; }
+.feedback-send:disabled { opacity: 0.5; cursor: not-allowed; }

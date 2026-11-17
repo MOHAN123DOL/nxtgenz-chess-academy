@@ -1,0 +1,6 @@
+.chess-bg { position: absolute; inset: 0; z-index: 0; display: grid; overflow: hidden; pointer-events: none; background: var(--primary); }
+/* Light squares are the secondary colour mixed into the primary, so only the two approved colours are involved. */
+.chess-bg .sq { transition: background-color 1s ease; }
+.chess-bg .sq.light { background: color-mix(in srgb, var(--secondary) 9%, var(--primary)); }
+.chess-bg .sq.dark { background: var(--primary); }
+.chess-bg .sq.lit { background: var(--secondary); transition-duration: 0s; }

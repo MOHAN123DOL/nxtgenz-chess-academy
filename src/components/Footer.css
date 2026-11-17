@@ -1,0 +1,51 @@
+.site-footer { position: relative; z-index: 1; padding: clamp(4rem, 8vw, 5.5rem) 0 calc(var(--nav-space) + 0.5rem); }
+.checker-top::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 28px; background: repeating-conic-gradient(var(--secondary) 0 25%, var(--primary) 0 50%) 0 0 / 56px 56px; }
+.footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1.5fr auto; gap: clamp(1.5rem, 3vw, 2.5rem); align-items: start; }
+.footer-grid > * { min-width: 0; }
+.site-footer h4 { margin-bottom: 1rem; font-size: 1.15rem; }
+.site-footer ul { list-style: none; display: grid; gap: 0.35rem; }
+.site-footer ul a { display: inline-flex; align-items: center; min-height: 32px; border-bottom: 2px solid var(--primary); transition: border-color 0.2s; }
+.site-footer ul a:hover { border-color: var(--secondary); }
+.contact-list li { display: flex; gap: 0.6rem; align-items: flex-start; }
+.contact-list svg { flex-shrink: 0; margin-top: 0.4rem; }
+.contact-list a, .contact-list span { overflow-wrap: anywhere; }
+.footer-brand p { margin-top: 1.25rem; max-width: 30ch; }
+.footer-social { display: flex; justify-content: center; }
+
+/* Credit line + particle wordmark */
+.credit { margin-top: clamp(2.5rem, 6vw, 4rem); text-align: center; }
+.credit-label { font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+.credit-visual { position: relative; width: 100%; aspect-ratio: 3.6 / 1; max-height: 340px; }
+.credit-static { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--font-display); font-weight: 800; font-size: clamp(3rem, 15vw, 9rem); letter-spacing: -0.03em; line-height: 1; white-space: nowrap; }
+.credit-particles { position: absolute; inset: 0; }
+.credit-particles .nxt-particles { height: 100%; max-height: none; aspect-ratio: auto; }
+.copyright { text-align: center; margin-top: 1.5rem; padding: 0 1rem; font-size: 0.9rem; }
+
+/* Brand card (from Uiverse logo card) */
+.brand-card { width: min(280px, 100%); height: 170px; background: var(--secondary); color: var(--primary); position: relative; display: grid; place-content: center; border-radius: 10px; overflow: hidden; transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out; }
+.bc-border { position: absolute; inset: 0; border: 3px solid var(--primary); opacity: 0; transform: rotate(10deg); transition: all 0.5s ease-in-out; }
+.bc-logo { display: flex; align-items: baseline; height: 40px; width: 0.82em; overflow: hidden; white-space: nowrap; font-family: var(--font-display); font-weight: 800; font-size: 2rem; transition: width 1s ease-in-out; margin-inline: auto; }
+.bc-sub { position: absolute; left: 50%; top: 50%; transform: translate(-50%, 30px); font-size: 0.7rem; font-weight: 700; letter-spacing: 6px; text-transform: uppercase; opacity: 0; transition: opacity 0.5s ease 0.4s, letter-spacing 0.5s ease 0.4s; white-space: nowrap; }
+.brand-card:hover, .brand-card:focus-visible { border-radius: 0; transform: scale(1.04); }
+.brand-card:hover .bc-logo, .brand-card:focus-visible .bc-logo { width: 150px; }
+.brand-card:hover .bc-border, .brand-card:focus-visible .bc-border { inset: 14px; opacity: 1; transform: rotate(0); }
+.brand-card:hover .bc-sub, .brand-card:focus-visible .bc-sub { opacity: 1; letter-spacing: 8px; }
+
+/* Social card (from Uiverse social card). Boxes alternate between the two theme colours. */
+.social-card { position: relative; width: 200px; height: 200px; border-radius: 30px; overflow: hidden; border: 3px solid var(--secondary); background: var(--secondary); color: var(--primary); transition: transform 1s ease-in-out; }
+.sc-bg { position: absolute; inset: 0; background: var(--secondary); }
+.sc-logo { position: absolute; right: 50%; bottom: 50%; transform: translate(50%, 50%); transition: all 0.6s ease-in-out; font-size: 1.3em; font-weight: 800; font-family: var(--font-display); letter-spacing: 3px; }
+.sc-icon { display: inline-block; width: 20px; height: 20px; transition: all 0.5s; }
+.sc-box { --f: var(--secondary); --b: var(--primary); position: absolute; padding: 10px; text-align: right; background: var(--b); color: var(--f); border-top: 2px solid var(--f); border-right: 2px solid var(--f); border-radius: 10% 13% 42% 0% / 10% 12% 75% 0%; transform-origin: bottom left; transition: all 1s ease-in-out; overflow: hidden; }
+.sc-box:hover, .sc-box:focus-visible { background: var(--f); color: var(--b); border-color: var(--b); }
+.sc-box > * { position: relative; }
+.sc-box1 { width: 70%; height: 70%; bottom: -70%; left: -70%; }
+.sc-box2 { --f: var(--primary); --b: var(--secondary); width: 50%; height: 50%; bottom: -50%; left: -50%; transition-delay: 0.2s; border-color: var(--primary); }
+.sc-box3 { width: 30%; height: 30%; bottom: -30%; left: -30%; transition-delay: 0.4s; }
+.sc-box4 { --f: var(--primary); --b: var(--secondary); width: 10%; height: 10%; bottom: -10%; left: -10%; transition-delay: 0.6s; }
+.social-card:hover, .social-card:focus-within { transform: scale(1.06); }
+.social-card:hover .sc-box, .social-card:focus-within .sc-box { bottom: -1px; left: -1px; }
+.social-card:hover .sc-logo, .social-card:focus-within .sc-logo { transform: translate(70px, -52px); letter-spacing: 0; }
+
+@media (max-width: 1100px) { .footer-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .footer-social { justify-content: flex-start; } }
+@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } .footer-social { justify-content: center; } .brand-card { width: 100%; } }

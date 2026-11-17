@@ -1,0 +1,17 @@
+.morph-root { position: relative; display: flex; justify-content: flex-start; max-width: 100%; }
+.morph-container { font-family: var(--font-display); font-weight: 800; user-select: none; color: var(--secondary); max-width: 100%; }
+.morph-rotator { position: relative; height: 1.2em; min-width: 9ch; display: flex; align-items: center; justify-content: flex-start; }
+.morph-word {
+  position: absolute; top: 50%; left: 0; transform: translate(0, -50%); opacity: 0; white-space: nowrap; color: var(--secondary);
+  animation-name: morph-word-rotate; animation-timing-function: ease-in-out; animation-iteration-count: infinite; animation-fill-mode: both;
+}
+@keyframes morph-word-rotate {
+  0% { opacity: 0; filter: blur(20px); transform: translate(0, -50%) scale(0.8); }
+  5% { opacity: 0.5; filter: blur(10px); }
+  15%, 35% { opacity: 1; filter: blur(0); transform: translate(0, -50%) scale(1); }
+  45% { opacity: 0.5; filter: blur(10px); }
+  50%, 100% { opacity: 0; filter: blur(20px); transform: translate(0, -50%) scale(1.2); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .morph-word:first-child { opacity: 1 !important; filter: none !important; }
+}

@@ -1,0 +1,15 @@
+.gen-btn {
+  position: relative; display: inline-flex; align-items: center; gap: 0.5rem; min-height: var(--target); padding: 0.7rem 1.4rem;
+  border-radius: 8px; border: 2px solid var(--on); background: var(--on); color: var(--bg); font-weight: 700;
+  box-shadow: 4px 4px 0 var(--edge); transition: background-color 0.25s, color 0.25s, transform 0.2s, box-shadow 0.2s;
+}
+.gen-btn:hover:not(:disabled) { background: var(--bg); color: var(--on); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--edge); }
+.gen-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+/* Floating "go to top": always the light/purple pair so it reads on any section, parked above the dock. */
+.gen-floating {
+  --on: var(--primary); --bg: var(--secondary); --edge: var(--primary);
+  position: fixed; right: max(1rem, env(safe-area-inset-right, 0px)); bottom: calc(var(--nav-space) + 0.75rem); z-index: 40;
+  width: 48px; height: 48px; padding: 0; justify-content: center; background: var(--secondary); color: var(--primary);
+}
+.gen-floating:hover:not(:disabled) { background: var(--primary); color: var(--secondary); }
+@media (min-width: 900px) { .gen-floating { bottom: 1.5rem; right: 1.5rem; } }

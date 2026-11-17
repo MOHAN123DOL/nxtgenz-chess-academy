@@ -1,0 +1,37 @@
+/* GlassDock: the uploaded dock, rewritten as plain CSS in the two-colour theme (Tailwind is not used in this project). */
+.dock-wrap {
+  position: fixed; left: 0; right: 0; z-index: 60; display: flex; justify-content: center; pointer-events: none;
+  bottom: max(0.75rem, env(safe-area-inset-bottom, 0px));
+  padding-inline: max(0.75rem, env(safe-area-inset-left, 0px)) max(0.75rem, env(safe-area-inset-right, 0px));
+}
+.glass-dock {
+  position: relative; pointer-events: auto; display: flex; align-items: center; justify-content: center;
+  gap: clamp(0.15rem, 1.6vw, 0.9rem); padding: 0.5rem clamp(0.5rem, 2vw, 1.1rem); max-width: 100%;
+  background: var(--secondary); border: 3px solid var(--primary); border-radius: 20px; box-shadow: 5px 5px 0 var(--primary);
+}
+.dock-item {
+  position: relative; display: grid; place-items: center; flex: 0 0 auto;
+  width: clamp(44px, 12.5vw, 52px); height: clamp(44px, 12.5vw, 52px); border-radius: 14px;
+  color: var(--primary); background: var(--secondary); border: 2px solid var(--secondary);
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+  -webkit-tap-highlight-color: transparent;
+}
+.dock-item:hover { border-color: var(--primary); }
+.dock-item.is-active { background: var(--primary); color: var(--secondary); border-color: var(--primary); }
+.dock-item:focus-visible { outline: 3px solid var(--primary); outline-offset: 3px; }
+.dock-icon { display: grid; place-items: center; }
+.dock-lucide { width: 22px; height: 22px; }
+.dock-morph { --dock-scale: 1; --dock-opacity: 1; display: grid; place-items: center; }
+.dock-morph svg { width: 24px; height: 24px; fill: currentColor; stroke: none; transform: scale(var(--dock-scale)); opacity: var(--dock-opacity); }
+
+.dock-tip { position: absolute; top: 0; left: 0; z-index: 30; pointer-events: none; }
+.dock-tip-box {
+  transform: translateX(-50%); min-width: 96px; padding: 0.4rem 1rem; border-radius: 10px;
+  background: var(--primary); color: var(--secondary); border: 2px solid var(--secondary); box-shadow: 0 0 0 2px var(--primary);
+}
+.dock-tip-text { position: relative; display: flex; align-items: center; justify-content: center; height: 1.1rem; overflow: hidden; }
+.dock-tip-text span { font-size: 0.8rem; font-weight: 700; letter-spacing: 0.02em; white-space: nowrap; }
+
+@media (max-width: 380px) {
+  .glass-dock { padding-inline: 0.35rem; border-radius: 16px; }
+}

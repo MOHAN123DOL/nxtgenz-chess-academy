@@ -1,0 +1,40 @@
+.pricing { display: grid; gap: clamp(1.5rem, 4vw, 2.5rem); justify-items: center; }
+.pricing-grid { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.25rem, 3vw, 2rem); align-items: stretch; }
+
+.tier { position: relative; display: flex; flex-direction: column; padding: clamp(1.25rem, 3vw, 1.75rem); border: 3px solid var(--primary); border-radius: 22px;
+  background: var(--secondary); color: var(--primary); --on: var(--primary); --bg: var(--secondary); --edge: var(--primary); --ring: var(--primary); box-shadow: 8px 8px 0 var(--primary); }
+.tier.is-featured { background: var(--primary); color: var(--secondary); --on: var(--secondary); --bg: var(--primary); --edge: var(--primary); --ring: var(--secondary); }
+.tier-badge { position: absolute; top: -16px; right: 1.25rem; padding: 0.3rem 1rem; border-radius: 999px; background: var(--secondary); color: var(--primary); border: 3px solid var(--primary); font-weight: 800; font-size: 0.85rem; }
+.tier-head { padding-bottom: 1.25rem; }
+.tier-head h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin-bottom: 0.5rem; }
+.tier-price { display: flex; align-items: flex-end; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.tier-amount { position: relative; display: inline-flex; overflow: hidden; font-family: var(--font-display); font-weight: 800; font-size: clamp(2.5rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.03em; }
+.roll { display: inline-block; }
+.tier-period { margin-bottom: 0.5rem; font-weight: 600; }
+.tier-meta { margin-bottom: 1.25rem; font-weight: 700; }
+.tier-cta { width: 100%; }
+.tier.is-featured .tier-cta { box-shadow: 4px 4px 0 var(--secondary); }
+.tier-rule { display: block; width: 100%; height: 3px; overflow: visible; margin-block: 1.75rem; }
+.tier-features-label { font-weight: 800; margin-bottom: 1rem; }
+.tier-features { list-style: none; display: grid; gap: 0.75rem; }
+.tier-features li { display: flex; gap: 0.7rem; align-items: flex-start; }
+.tier-features svg { flex-shrink: 0; margin-top: 0.2rem; }
+.tier-body { display: flex; flex-direction: column; flex: 1; }
+
+.billing-switch { position: relative; display: flex; width: min(100%, 340px); padding: 4px; border: 3px solid var(--primary); border-radius: 12px; background: var(--secondary); }
+.billing-thumb { position: absolute; left: 4px; top: 4px; height: calc(100% - 8px); width: calc(50% - 4px); border-radius: 7px; background: var(--primary); transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.billing-thumb.is-yearly { transform: translateX(100%); }
+.billing-option { position: relative; flex: 1; min-width: 0; min-height: var(--target); padding: 0.4rem 0.6rem; border: 0; border-radius: 8px; background: none; color: var(--primary); font-weight: 700; transition: color 0.3s; }
+.billing-option.is-on { color: var(--secondary); }
+.billing-chip { margin-left: 0.4rem; padding: 0.1rem 0.5rem; border-radius: 999px; background: var(--secondary); color: var(--primary); font-size: 0.75rem; }
+.billing-option:focus-visible { outline-offset: 2px; }
+
+@media (max-width: 1099px) {
+  .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pricing-grid > :last-child:nth-child(odd) { grid-column: 1 / -1; justify-self: center; width: calc(50% - 1rem); }
+}
+@media (max-width: 699px) {
+  .pricing-grid { grid-template-columns: 1fr; max-width: 460px; }
+  .pricing-grid > :last-child:nth-child(odd) { width: 100%; }
+  .tier { box-shadow: 5px 5px 0 var(--primary); }
+}

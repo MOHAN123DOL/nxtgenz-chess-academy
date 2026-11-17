@@ -1,0 +1,140 @@
+/* NXT GENZ Chess Academy: two-colour system.
+   Only --primary and --secondary are used for UI. Chess photographs keep their natural colours. */
+:root {
+  --primary: #27187E;
+  --secondary: #F7F7FF;
+
+  /* Context variables: sections swap these so buttons, cards and rules always contrast. */
+  --on: var(--primary);
+  --bg: var(--secondary);
+  --edge: var(--primary);
+  --ring: var(--primary);
+
+  --font-display: "Bricolage Grotesque", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --nav-space: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+  --target: 44px;
+  --radius: 14px;
+  --gutter: clamp(1rem, 4vw, 2rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-bottom: var(--nav-space); -webkit-text-size-adjust: 100%; }
+body {
+  background: var(--secondary);
+  color: var(--primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 800; line-height: 1.08; letter-spacing: -0.02em; text-wrap: balance; }
+p, li { text-wrap: pretty; }
+a { color: inherit; text-decoration: none; }
+img, svg, video { max-width: 100%; }
+img { display: block; height: auto; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+::selection { background: var(--primary); color: var(--secondary); }
+::placeholder { color: var(--primary); opacity: 0.6; }
+:focus-visible { outline: 3px solid var(--ring); outline-offset: 3px; }
+
+/* ---------- Layout ---------- */
+.page { position: relative; z-index: 1; min-height: 100vh; }
+.container { width: min(100% - 2 * var(--gutter), 1200px); margin-inline: auto; }
+.section { position: relative; padding-block: clamp(3.5rem, 8vw, 6rem); }
+
+/* Section colour bands: purple sections hold white text, white sections hold purple text. */
+.band-dark { background: var(--primary); color: var(--secondary); --on: var(--secondary); --bg: var(--primary); --edge: var(--secondary); --ring: var(--secondary); }
+.band-light { background: var(--secondary); color: var(--primary); --on: var(--primary); --bg: var(--secondary); --edge: var(--primary); --ring: var(--primary); }
+
+/* Chessboard strip that sits on the lower edge of a purple section. */
+.checker-edge { position: relative; }
+.checker-edge::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 28px; z-index: 2; pointer-events: none;
+  background: repeating-conic-gradient(var(--secondary) 0 25%, var(--primary) 0 50%) 0 0 / 56px 56px;
+}
+
+/* ---------- Type ---------- */
+.section-title { font-size: clamp(2rem, 5.2vw, 3.6rem); margin-bottom: 1rem; }
+.section-sub { max-width: 62ch; font-size: clamp(1rem, 1.6vw, 1.15rem); }
+.center { text-align: center; margin-inline: auto; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
+  min-height: var(--target); padding: 0.85rem 1.7rem; border-radius: 8px; border: 2px solid var(--on);
+  font-weight: 700; font-size: 1rem; line-height: 1.2; text-align: center;
+  transition: background-color 0.25s, color 0.25s, transform 0.25s, box-shadow 0.25s;
+}
+.btn-primary { background: var(--on); color: var(--bg); box-shadow: 4px 4px 0 var(--edge); }
+.btn-primary:hover { background: var(--bg); color: var(--on); transform: translate(-2px, -2px); box-shadow: 6px 6px 0 var(--edge); }
+.btn-ghost { background: var(--bg); color: var(--on); }
+.btn-ghost:hover { background: var(--on); color: var(--bg); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--edge); }
+.btn:active { transform: translate(1px, 1px); box-shadow: none; }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--secondary); color: var(--primary); --on: var(--primary); --bg: var(--secondary); --ring: var(--primary);
+  border: 3px solid var(--primary); border-radius: var(--radius); box-shadow: 6px 6px 0 var(--edge);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+@media (hover: hover) {
+  .card:hover { transform: translate(-3px, -3px); box-shadow: 9px 9px 0 var(--edge); }
+}
+.chip-label {
+  display: inline-block; justify-self: start; padding: 0.25rem 0.85rem; border-radius: 999px;
+  border: 2px solid var(--primary); background: var(--primary); color: var(--secondary); font-size: 0.8rem; font-weight: 700;
+}
+
+/* ---------- Page hero (About, Courses, Gallery, Contact) ---------- */
+.page-hero { position: relative; overflow: hidden; background: var(--primary); color: var(--secondary); padding: clamp(5.5rem, 11vw, 8rem) 0 clamp(4rem, 8vw, 6rem); }
+.page-hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center; }
+.page-hero h1 { font-size: clamp(2.4rem, 7vw, 5rem); margin-bottom: 1rem; }
+.page-hero p { max-width: 46ch; font-size: clamp(1.05rem, 2vw, 1.3rem); }
+.hero-photo { position: relative; aspect-ratio: 4 / 3; border: 4px solid var(--secondary); border-radius: var(--radius); box-shadow: 10px 10px 0 var(--secondary); overflow: hidden; transform: rotate(2deg); }
+
+/* ---------- Grids ---------- */
+.grid { display: grid; gap: clamp(1rem, 2.5vw, 1.75rem); }
+.grid > * { min-width: 0; }
+.grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* ---------- Forms ---------- */
+.field { display: grid; gap: 0.35rem; }
+.field label { font-size: 0.9rem; font-weight: 700; }
+.field input, .field select, .field textarea {
+  width: 100%; min-height: var(--target); background: var(--secondary); color: var(--primary);
+  border: 2px solid var(--primary); border-radius: 8px; padding: 0.7rem 0.9rem; transition: box-shadow 0.2s;
+}
+.field textarea { resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { outline: none; box-shadow: 4px 4px 0 var(--primary); }
+.field:has(.err) input, .field:has(.err) select, .field:has(.err) textarea { border-width: 4px; border-style: dashed; }
+.field .err { font-size: 0.85rem; font-weight: 700; padding-left: 0.6rem; border-left: 4px solid var(--primary); }
+.form-note { font-size: 0.85rem; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+  .grid-3, .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .page-hero-grid { grid-template-columns: 1fr; }
+  .hero-photo { transform: none; box-shadow: 6px 6px 0 var(--secondary); max-width: 460px; }
+  .card { box-shadow: 4px 4px 0 var(--edge); }
+}
+@media (pointer: coarse) { :root { --target: 48px; } }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---------- Images ---------- */
+.smart-image { position: relative; overflow: hidden; width: 100%; height: 100%; background: var(--primary); }
+.smart-image img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.smart-image.is-empty { background: repeating-conic-gradient(var(--primary) 0 25%, var(--secondary) 0 50%) 0 0 / 64px 64px; display: grid; place-items: center; }
+.smart-image-piece { display: grid; place-items: center; width: clamp(64px, 28%, 120px); aspect-ratio: 1; border-radius: 50%; background: var(--primary); color: var(--secondary); border: 4px solid var(--secondary); font-size: clamp(2rem, 6vw, 3.5rem); line-height: 1; }
+
+/* Closing call-to-action block that sits in a white section. */
+.band-light + .cta-section { padding-top: 0; }
+.cta-section .cta-band { border: 4px solid var(--primary); border-radius: 22px; box-shadow: 10px 10px 0 var(--primary); }
